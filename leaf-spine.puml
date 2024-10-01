@@ -1,0 +1,28 @@
+' Alt D - Open Preview '
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/box.puml
+
+' LEAF PAIR 1 ' ---------------------------------------------------- 
+System_Boundary(leaf_pair_1, "Leaf Pair 1") {
+    Container(leaf_pair_1_b, "Leaf B", $descr="VLANS 2,5") 
+    Container(leaf_pair_1_a, "Leaf A", $descr="VLANS 1,10")
+}
+Rel_R(leaf_pair_1_a, leaf_pair_1_b, "MLAG")
+Rel_L(leaf_pair_1_b, leaf_pair_1_a, "Port-Channel-1001")
+
+' LEAF PAIR 2 ' ---------------------------------------------------- 
+System_Boundary(leaf_pair_2, "Leaf Pair 2") {
+    Container(leaf_pair_2_b, "Leaf B", $descr="VLANS 1,4,5") 
+    Container(leaf_pair_2_a, "Leaf A", $descr="VLANS 1,3,10")
+}
+Rel_R(leaf_pair_2_a, leaf_pair_2_b, "MLAG")
+Rel_L(leaf_pair_2_b, leaf_pair_2_a, "Port-Channel-2002")
+
+
+@enduml
+
+' Concept Maps
